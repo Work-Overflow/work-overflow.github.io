@@ -1,0 +1,21 @@
+{
+    "name": "WorkOverflow",
+    "short_name": "WorkOverflow",
+    "start_url": "/",
+    "lang": "en-US",
+    "display": "standalone",
+    "theme_color": "rgb(18, 18, 18)",
+    "background_color": "#222",
+    "icons": [
+        {
+            "src": "./workoverflow.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "./workoverflow.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
