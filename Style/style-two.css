@@ -1,6 +1,7 @@
 /* Google Fonts Import Link */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&family=Titillium+Web:wght@200;300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
 * {
   margin: 0;
@@ -86,8 +87,8 @@ body {
   position: fixed;
   /* left: 10px; */
   height: 100%;
-  width: 67px;
-  background: var(--background-3);
+  width: 76px;
+  background: var(--background-2);
   padding: 6px 14px;
   z-index: 99;
   transition: all 0.5s ease;
@@ -95,6 +96,7 @@ body {
   margin: auto;
   top: 50%;
   transform: translate(0, -50%);
+  border-right: 1px #ddd solid;
 }
 
 .sidebar.open {
@@ -146,7 +148,7 @@ body {
 .sidebar i {
   color: #fff;
   height: 60px;
-  min-width: 40px;
+  min-width: 48px;
   font-size: 28px;
   text-align: center;
   line-height: 60px;
@@ -239,13 +241,63 @@ body {
   border-radius: 12px;
   align-items: center;
   text-decoration: none;
-  transition: all 0.4s ease;
+  transition: all 0.8s ease;
   background: var(--background-3);
 }
 
 .sidebar li a:hover {
   background: #FFF;
 }
+
+.note-color-button{
+  transition: opacity 1s ease-out;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 13px;
+  transition: all 1s ease-in-out;
+}
+.button-is-active {
+  opacity: 1;
+  height: auto;
+  transition: all 1s ease-in-out;
+}
+
+.active {
+  transform: rotate(360deg);
+}
+
+.color-button{
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin: 8px;
+}
+
+#red{
+  background-color: #EE4266;
+}
+#green{
+  background-color: #68B984;
+}
+#blue{
+  background-color: #78C1F3;
+}
+#purple{
+  background-color: #E26EE5;
+}
+#yellow{
+  background-color: #FED049;
+}
+#orange{
+  background-color: #FFA447;
+}
+
 
 .sidebar li a .links_name {
   color: #fff;
@@ -273,6 +325,10 @@ body {
   line-height: 40px;
   font-size: 21px;
   border-radius: 12px;
+}
+
+#add-icon{
+  font-size: 30px;
 }
 
 .sidebar li.profile {

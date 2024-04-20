@@ -10,12 +10,15 @@ const months = ["January", "February", "March", "April", "May", "June", "July",
     "August", "September", "October", "November", "December"];
 const WorkOverflow_Notes = JSON.parse(localStorage.getItem("WorkOverflow_Notes") || "[]");
 let isUpdate = false, updateId;
-addBox.addEventListener("click", () => {
-    popupTitle.innerText = "Add a new Note";
-    addBtn.innerText = "Add Note";
-    popupBox.classList.add("show");
-    if (window.innerWidth > 660) titleTag.focus();
-});
+
+    addBox.addEventListener("click", () => {
+        popupTitle.innerText = "Add a new Note";
+        addBtn.innerText = "Add Note";
+        popupBox.classList.add("show");
+        if (window.innerWidth > 660) titleTag.focus();
+    });
+
+
 closeIcon.addEventListener("click", () => {
     isUpdate = false;
     titleTag.value = descTag.value = "";
@@ -27,7 +30,7 @@ function showNotes() {
     document.querySelectorAll(".note").forEach(li => li.remove());
     WorkOverflow_Notes.forEach((note, id) => {
         let filterDesc = note.description.replaceAll("\n", '<br/>');
-        let liTag = `<li class="note">
+        let liTag = `<li class="note" id="${note.color}">
                         <div class="details">
                             <p>${note.title}</p>
                             <span>${filterDesc}</span>
@@ -43,10 +46,12 @@ function showNotes() {
                             </div>
                         </div>
                     </li>`;
-            defaultBox.insertAdjacentHTML("afterend", liTag);
+                    defaultBox.insertAdjacentHTML("afterend", liTag);
     });
 }
 showNotes();
+
+
 function showNOTESMenu(elem) {
     elem.parentElement.classList.add("show");
     document.addEventListener("click", e => {
@@ -55,6 +60,8 @@ function showNOTESMenu(elem) {
         }
     });
 }
+
+
 function deleteNote(noteId) {
     let confirmDel = confirm("Are you sure you want to delete this note?");
     if (!confirmDel) return;
@@ -62,6 +69,8 @@ function deleteNote(noteId) {
     localStorage.setItem("WorkOverflow_Notes", JSON.stringify(WorkOverflow_Notes));
     showNotes();
 }
+
+
 function updateNote(noteId, title, filterDesc) {
     let description = filterDesc.replaceAll('<br/>', '\r\n');
     updateId = noteId;
@@ -72,24 +81,27 @@ function updateNote(noteId, title, filterDesc) {
     popupTitle.innerText = "Update a Note";
     addBtn.innerText = "Update Note";
 }
-addBtn.addEventListener("click", e => {
-    e.preventDefault();
-    let title = titleTag.value.trim(),
-        description = descTag.value.trim();
-    if (title || description) {
-        let currentDate = new Date(),
-            month = months[currentDate.getMonth()],
-            day = currentDate.getDate(),
-            year = currentDate.getFullYear();
-        let noteInfo = { title, description, date: `${month} ${day}, ${year}` }
-        if (!isUpdate) {
-            WorkOverflow_Notes.push(noteInfo);
-        } else {
-            isUpdate = false;
-            WorkOverflow_Notes[updateId] = noteInfo;
+
+
+    addBtn.addEventListener("click", e => {
+        e.preventDefault();
+        let color = addBtn.id     //WORK HERE
+        let title = titleTag.value.trim(),
+            description = descTag.value.trim();
+        if (title || description) {
+            let currentDate = new Date(),
+                month = months[currentDate.getMonth()],
+                day = currentDate.getDate(),
+                year = currentDate.getFullYear();
+            let noteInfo = { title, description, date: `${month} ${day}, ${year}`, color }
+            if (!isUpdate) {
+                WorkOverflow_Notes.push(noteInfo);
+            } else {
+                isUpdate = false;
+                WorkOverflow_Notes[updateId] = noteInfo;
+            }
+            localStorage.setItem("WorkOverflow_Notes", JSON.stringify(WorkOverflow_Notes));
+            showNotes();
+            closeIcon.click();
         }
-        localStorage.setItem("WorkOverflow_Notes", JSON.stringify(WorkOverflow_Notes));
-        showNotes();
-        closeIcon.click();
-    }
-});
+    });

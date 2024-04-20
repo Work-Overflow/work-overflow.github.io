@@ -63,7 +63,7 @@ function $LIGHT_MODE() {
 
         '--text-icons-1': '#11101d',
         '--text-icons-2': '#575757',
-        '--text-icons-ccc': '#ccc',
+        '--text-icons-ccc': '#000',
         '--text-icons-special-case': '#f1f3fa',
 
         '--scroll-track': '#f1f1f1',
